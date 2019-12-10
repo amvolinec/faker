@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        return redirect()->route('home');
+    } else {
+        return view('welcome');
+    }
+
 });
 
 Auth::routes();
@@ -22,6 +27,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function () {
     Route::resource('/import', 'ImportController');
     Route::resource('/table', 'TableController');
+
     Route::get('/calls/history', 'CallsHistoryController@index')->name('calls.history');
     Route::delete('/calls/history/flash', 'CallsHistoryController@flash')->name('calls.flash');
+    Route::post('/calls/add', 'CallsHistoryController@add')->name('calls.add');
+
+//    Route::post('/calls/add/{number}', function($number) { });
 });

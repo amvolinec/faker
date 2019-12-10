@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.form-control.inline {
+  width: auto;
+  float: left;
+  margin-right: 10px;
+}

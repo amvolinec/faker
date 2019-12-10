@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'log_queries' => env('LOG_QUERIES', false),
+    'max_insert_rows' => env('MAX_INSERT_ROWS', 2000),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
