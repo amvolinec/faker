@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tables = DB::select('SHOW TABLES');
+        $tables = DB::connection('mysql2')->select('SHOW TABLES');
         return view('home', compact('tables'));
     }
 }
