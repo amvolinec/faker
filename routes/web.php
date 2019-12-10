@@ -22,4 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function () {
     Route::resource('/import', 'ImportController');
     Route::resource('/table', 'TableController');
+    Route::get('/calls/history', 'CallsHistoryController@index')->name('calls.history');
+    Route::delete('/calls/history/flash', 'CallsHistoryController@flash')->name('calls.flash');
 });
