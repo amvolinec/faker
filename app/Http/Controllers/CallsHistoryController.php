@@ -25,7 +25,6 @@ class CallsHistoryController extends Controller
 
     public function index()
     {
-
         $header = 'Calls History';
         $items = CallsHistory::paginate(25);
         $columns = Schema::connection('mysql2')->getColumnListing('fv_calls_history');
@@ -36,6 +35,19 @@ class CallsHistoryController extends Controller
     {
         DB::connection('mysql2')->table('fv_calls_history')->delete();
         return redirect()->back()->withInput();
+    }
+
+    public function factory(CallsHistoryRequest $request)
+    {
+        $time_start = microtime(true);
+        $qty = $request->input('qty');
+
+        factory(CallsHistory::class, $qty)->create();
+
+        $execution_time = (microtime(true) - $time_start);
+        session()->flash('status', 'Completed ' . number_format($execution_time, 4) . ' sec.');
+
+        return redirect()->route('calls.history');
     }
 
     public function add(CallsHistoryRequest $request)
@@ -53,10 +65,9 @@ class CallsHistoryController extends Controller
             $this->bigCast($qty);
         }
 
-
         $execution_time = (microtime(true) - $time_start);
-
         session()->flash('status', 'Completed ' . number_format($execution_time, 4) . ' sec.');
+
         return redirect()->route('calls.history');
 
     }
