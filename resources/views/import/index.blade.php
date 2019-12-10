@@ -5,7 +5,15 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Tables</div>
+                    <div class="card-header">
+                        Tables
+                        <form class="float-right" action="{{ route('import.create') }}" method="GET">
+                            @method('get')
+                            @csrf
+                            <button class="btn btn-success">{{ __('Import') }}</button>
+                        </form>
+                    </div>
+
 
                     <div class="card-body">
                         @if (session('status'))
@@ -14,13 +22,7 @@
                             </div>
                         @endif
 
-                        @forelse($tables as $table)
-                            @foreach($table as $key=>$value)
-                                <div><a href="{{ route('table.show', $value) }}">{{ $value }}</a></div>
-                            @endforeach
-                        @empty
-                            {{ __('No tables') }}
-                        @endforelse
+                        @include('tables.table', ['columns' => $columns, 'items' => $items])
 
                     </div>
                 </div>

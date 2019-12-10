@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Import;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class ImportController extends Controller
+class TableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,7 @@ class ImportController extends Controller
      */
     public function index()
     {
-        $columns = Schema::getColumnListing('imports');
-        $items = DB::table('imports')->paginate(20);
-        return view('import.index', ['columns' => $columns, 'items' => $items]);
+        //
     }
 
     /**
@@ -34,7 +31,7 @@ class ImportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,21 +42,29 @@ class ImportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Import  $import
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Import $import)
+    public function show($id)
     {
-        //
+        if (Schema::connection('mysql2')->hasTable($id)) {
+
+            $columns = Schema::connection('mysql2')->getColumnListing($id);
+            $items = DB::connection('mysql2')->table($id)->paginate(20);
+            return view('tables.index', ['columns' => $columns, 'items' => $items, 'name' => $id]);
+        } else {
+            session()->flash('status', 'Table not found!');
+            return view('tables.error');
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Import  $import
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Import $import)
+    public function edit($id)
     {
         //
     }
@@ -67,11 +72,11 @@ class ImportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Import  $import
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Import $import)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,10 +84,10 @@ class ImportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Import  $import
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Import $import)
+    public function destroy($id)
     {
         //
     }
