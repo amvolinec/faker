@@ -16,6 +16,7 @@
 
                         @include('tables.table', ['columns' => $columns, 'items' => $items])
 
+                        {{ $items->links() }}
                     </div>
                 </div>
             </div>
