@@ -19,7 +19,7 @@ class ColumnController extends Controller
         $name = 'Columns';
         $columns = Schema::getColumnListing('columns');
         $items = Column::paginate(25);
-        return view('tables.index', ['columns' => $columns, 'items' => $items, 'name' => $name]);
+        return view('tables.index', ['columns' => $columns, 'items' => $items, 'name' => $name, 'prefix' => 'column']);
     }
 
     /**
@@ -29,7 +29,8 @@ class ColumnController extends Controller
      */
     public function create()
     {
-        //
+        $tables = DB::connection('mysql2')->select('SHOW TABLES');
+        return view('columns.create', ['tables' => $tables]);
     }
 
     /**
