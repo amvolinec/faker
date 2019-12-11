@@ -25,13 +25,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/import', 'ImportController');
-    Route::resource('/table', 'TableController');
+//    Route::resource('/import', 'ImportController');
+//    Route::resource('/table', 'TableController');
+//    Route::resource('/column', 'ColumnController');
+
+    Route::resources([
+        'import' => 'ImportController',
+        'table' => 'TableController',
+        'column' => 'ColumnController',
+    ]);
 
     Route::get('/calls/history', 'CallsHistoryController@index')->name('calls.history');
     Route::delete('/calls/history/flash', 'CallsHistoryController@flash')->name('calls.flash');
     Route::post('/calls/add', 'CallsHistoryController@add')->name('calls.add');
     Route::post('/calls/factory', 'CallsHistoryController@factory')->name('calls.factory');
 
-//    Route::post('/calls/add/{number}', function($number) { });
+    Route::get('/settings', 'SettingsController@get')->name('settings.get');
+    Route::post('/settings/set', 'SettingsController@set')->name('settings.set');
 });

@@ -46,7 +46,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('calls.history') }}">{{ __('Calls') }} <span
-                                    class="sr-only">(current)</span></a>
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -86,6 +86,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('settings.get') }}">{{ __('Settings') }}</a>
+                                <a class="dropdown-item" href="{{ route('column.index') }}">{{ __('Columns') }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

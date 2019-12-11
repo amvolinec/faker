@@ -11362,3 +11362,7 @@ a.text-dark:focus {
   margin-right: 10px;
 }
 
+table.table {
+  font-size: 12px;
+}
+

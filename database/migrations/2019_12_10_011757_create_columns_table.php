@@ -24,7 +24,8 @@ class CreateColumnsTable extends Migration
         Schema::create('columns', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('value');
+            $table->string('type');
+            $table->boolean('faked')->default(true);
             $table->json('options')->nullable();
             $table->string('description')->nullable();
             $table->unsignedBigInteger('table_id');
