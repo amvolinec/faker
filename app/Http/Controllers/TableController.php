@@ -98,7 +98,7 @@ class TableController extends Controller
         if (is_table($table)) {
             $info = get_columns($table);
             $columns = get_table_schema(config('database.connections.mysql2.database'), $table);
-            return view('tables.info', ['table' => $table, 'info' => $columns]);
+            return view('tables.info', ['table' => $table, 'columns' => $columns]);
         }
         session()->flash('status', $table . __(' not exist'));
         return view('tables.error');
