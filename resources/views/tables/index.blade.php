@@ -11,7 +11,7 @@
                         @isset($prefix)
                             <a class="btn btn-success float-right" href="{{ route($prefix.'.create') }}">Create</a>
                         @endisset
-                        <a href="{{ route() }}"></a>
+                        <a href="{{ route('columns.info', $name) }}">Configure faker</a>
                     </div>
                     <div class="card-body overflow-auto">
                         @if (session('status'))
