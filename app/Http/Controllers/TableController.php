@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use MongoDB\Driver\Session;
 
 class TableController extends Controller
 {
@@ -91,4 +92,16 @@ class TableController extends Controller
     {
         //
     }
+
+    public function info($table)
+    {
+        if (is_table($table)) {
+            $info = get_columns($table);
+            $columns = get_table_schema(config('database.connections.mysql2.database'), $table);
+            return view('tables.info', ['table' => $table, 'info' => $columns]);
+        }
+        session()->flash('status', $table . __(' not exist'));
+        return view('tables.error');
+    }
+
 }
