@@ -11356,3 +11356,13 @@ a.text-dark:focus {
   }
 }
 
+.form-control.inline {
+  width: auto;
+  float: left;
+  margin-right: 10px;
+}
+
+table.table {
+  font-size: 12px;
+}
+

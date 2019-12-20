@@ -1,13 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Table: <strong>{{ $name }}</strong></div>
-
-                    <div class="card-body">
+                    <div class="card-header">
+                        Table:
+                        <strong>{{ $name }}</strong>
+                        @isset($prefix)
+                            <a class="btn btn-success float-right" href="{{ route($prefix.'.create') }}">Create</a>
+                        @endisset
+                        <a href="{{ route('columns.info', $name) }}">Configure faker</a>
+                    </div>
+                    <div class="card-body overflow-auto">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}

@@ -13,7 +13,7 @@
         </tr>
     @empty
         <tr>
-            <td>{{ __('No data') }}</td>
+            <td colspan="100%">{{ __('No data') }}</td>
         </tr>
     @endforelse
     </tbody>
