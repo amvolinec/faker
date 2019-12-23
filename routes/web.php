@@ -44,4 +44,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/settings/set', 'SettingsController@set')->name('settings.set');
 
     Route::get('/columns/info/{table}', ['uses' => 'TableController@info'])->name('columns.info');
+    Route::get('/columns/info/{table}/store', ['uses' => 'TableController@store'])->name('columns.store');
 });

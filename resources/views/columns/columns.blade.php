@@ -10,45 +10,35 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <form action="{{ route('columns.store', $table) }}">
 
-                    @foreach($columns as $column)
-                        @if('id' != $column->COLUMN_NAME)
-
+                @foreach($columns as $column)
+                    @if('id' != $column->COLUMN_NAME)
+                        <form action="{{ route('columns.store', $table) }}">
                             <div class="form-group dotted">
                                 <label
                                     for="{{ $column->COLUMN_NAME }}"><strong>{{ $column->COLUMN_NAME }}</strong> @if('NO' == $column->IS_NULLABLE)
                                         <span>***</span>@endif [<span
                                         style="font-size: 12px;"> Type: {{ $column->COLUMN_TYPE }}</span> ]</label>
                                 {{--                                <small id="emailHelp" class="form-text text-muted">{{ $column->COLUMN_TYPE }}</small>--}}
-                                {{--                                <input class="form-control form-control-sm mt-3" type="text"--}}
-                                {{--                                       name="{{ $column->COLUMN_NAME }}[]"--}}
-                                {{--                                       autocomplete="off" value="{{ $column->values[0] ?? '' }}">--}}
-                                {{--                                <small id="valueHelp" class="form-text text-muted">if only value</small>--}}
-                                {{--                                <input class="form-control form-control-sm mt-3" type="text"--}}
-                                {{--                                       name="{{ $column->COLUMN_NAME }}[]"--}}
-                                {{--                                       autocomplete="off" value="{{ $column->values[1] ?? '' }}">--}}
-                                {{--                                <small id="cammandHelp" class="form-text text-muted">fake command or function</small>--}}
-
-                                @isset($column->values['value'])
-                                    <input class="form-control form-control-sm mt-3" type="text"
-                                           name="{{ $column->COLUMN_NAME }}[value]"
-                                           autocomplete="off"
-                                           value="{{ $column->values['value'] ?? '' }}"
-                                    >
-                                @endisset
+                                <input class="form-control form-control-sm mt-3" type="text"
+                                       name="{{ $column->COLUMN_NAME }}[]"
+                                       autocomplete="off" value="{{ $column->values[0] ?? '' }}">
+                                <small id="valueHelp" class="form-text text-muted">if only value</small>
+                                <input class="form-control form-control-sm mt-3" type="text"
+                                       name="{{ $column->COLUMN_NAME }}[]"
+                                       autocomplete="off" value="{{ $column->values[1] ?? '' }}">
+                                <small id="cammandHelp" class="form-text text-muted">fake command or function</small>
                                 <textarea class="form-control form-control-sm mt-3" type="text"
-                                          readonly>{{ $column->value ?? ''}}</textarea>
+                                          name="{{ $column->COLUMN_NAME }}[]">{{ $column->values[2] ?? '' }}</textarea>
+
                                 <small id="cammandHelp" class="form-text text-muted">parameters JSON format</small>
                             </div>
-
-                        @endif
-                    @endforeach
-
-                    <div class="form-group dotted text-right">
-                        <button class="btn btn-sm btn-outline-success">{{ __('Update') }}</button>
-                    </div>
-                </form>
+                            <div class="form-group dotted text-right">
+                                <button class="btn btn-sm btn-outline-success">{{ __('Update') }}</button>
+                            </div>
+                        </form>
+                    @endif
+                @endforeach
 
                 {{--                @foreach($values as $key => $value)--}}
                 {{--                    <div> {{ $key }} : {{ $value }}</div>--}}

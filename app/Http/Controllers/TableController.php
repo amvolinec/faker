@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Column;
+use App\Table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -35,9 +37,34 @@ class TableController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $table)
     {
-        //
+        $tableModel = $tableModel = Table::where('name', $table)->first();
+        $column = null;
+
+        if (empty($tableModel)) {
+            $tableModel = Table::create(['name' => $table]);
+        }
+
+        foreach ($request->all() as $key => $value) {
+            if ($value !== null) {
+
+                $options = is_string($value) ? [$value] : (is_array($value) ? $value : array());
+
+                $column = $tableModel->columns()->where('name', $key)->first();
+                if (empty($column)) {
+                    $column = Column::create(['name' => $key, 'options' => $options]);
+                } else {
+                    $column->options = $options;
+                }
+
+                $tableModel->columns()->save($column);
+            }
+
+        }
+
+
+        return redirect()->route('columns.info', $table);
     }
 
     /**
@@ -95,13 +122,35 @@ class TableController extends Controller
 
     public function info($table)
     {
+
         if (is_table($table)) {
-            $info = get_columns($table);
+//            $info = get_columns($table);
             $columns = get_table_schema(config('database.connections.mysql2.database'), $table);
-            return view('tables.info', ['table' => $table, 'columns' => $columns]);
+        } else {
+            session()->flash('status', $table . __(' not exist'));
+            return view('tables.error');
         }
-        session()->flash('status', $table . __(' not exist'));
-        return view('tables.error');
+
+        $tableModel = Table::where('name', $table)->first();
+
+        if (!empty($tableModel)) {
+            $columns = $this->addValues($tableModel, $columns);
+        }
+        return view('tables.info', ['table' => $table, 'columns' => $columns]);
+    }
+
+    protected function addValues(Table $tableModel, $columns)
+    {
+        $values = $tableModel->columns;
+        foreach ($columns as $column) {
+            foreach ($values as $value) {
+                if ($value->name === $column->COLUMN_NAME) {
+                    $column->value = json_encode($value->options);
+                    $column->values = $value->options;
+                }
+            }
+        }
+        return $columns;
     }
 
 }

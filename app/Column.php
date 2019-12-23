@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Column extends Model
 {
 
+    protected $fillable = [
+        'name', 'value', 'command', 'is_function', 'options'
+    ];
+
     public function table()
     {
         return $this->belongsTo('App\Table', 'table_id');
