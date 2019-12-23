@@ -24,10 +24,10 @@ class CreateColumnsTable extends Migration
         Schema::create('columns', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('type');
             $table->boolean('faked')->default(true);
+            $table->string('value');
+            $table->boolean('is_function')->default(true);
             $table->json('options')->nullable();
-            $table->string('description')->nullable();
             $table->unsignedBigInteger('table_id');
             $table->softDeletes();
             $table->timestamps();

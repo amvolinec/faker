@@ -11,4 +11,13 @@ class Column extends Model
     {
         return $this->belongsTo('App\Table', 'table_id');
     }
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'options' => 'array',
+    ];
 }
