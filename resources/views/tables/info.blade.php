@@ -20,15 +20,6 @@
                                     for="{{ $column->COLUMN_NAME }}"><strong>{{ $column->COLUMN_NAME }}</strong> @if('NO' == $column->IS_NULLABLE)
                                         <span>***</span>@endif [<span
                                         style="font-size: 12px;"> Type: {{ $column->COLUMN_TYPE }}</span> ]</label>
-                                {{--                                <small id="emailHelp" class="form-text text-muted">{{ $column->COLUMN_TYPE }}</small>--}}
-                                {{--                                <input class="form-control form-control-sm mt-3" type="text"--}}
-                                {{--                                       name="{{ $column->COLUMN_NAME }}[]"--}}
-                                {{--                                       autocomplete="off" value="{{ $column->values[0] ?? '' }}">--}}
-                                {{--                                <small id="valueHelp" class="form-text text-muted">if only value</small>--}}
-                                {{--                                <input class="form-control form-control-sm mt-3" type="text"--}}
-                                {{--                                       name="{{ $column->COLUMN_NAME }}[]"--}}
-                                {{--                                       autocomplete="off" value="{{ $column->values[1] ?? '' }}">--}}
-                                {{--                                <small id="cammandHelp" class="form-text text-muted">fake command or function</small>--}}
 
                                 @isset($column->values['value'])
                                     <input class="form-control form-control-sm mt-3" type="text"
