@@ -7,7 +7,9 @@
                 <div class="card">
                     <div class="card-header">
                         Tables
-                        <form class="float-right" action="{{ route('import.store') }}" method="post" enctype="multipart/form-data">
+
+                        <form class="float-right" action="{{ route('import.store') }}" method="post"
+                              enctype="multipart/form-data">
                             @method('post')
                             @csrf
                             <div class="form-group">
@@ -25,6 +27,8 @@
 
 
                     <div class="card-body">
+
+
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}

@@ -116,21 +116,31 @@ class ImportController extends Controller
         $path = base_path() . '/storage/app/' . $file->path;
 
         if (file_exists($path)) {
-            return $this->run($path);
+            $cmd = $this->run($path);
+            $message = 'Imports success ' . $cmd . ' ' . $this->bash($cmd);
+            return redirect()->route('import.index')->with('status', $message);
+
         } else {
-            return 'file not exists';
+            return redirect()->route('import.index')->with('status', 'File not exists');
         }
 
     }
 
     protected function run($path)
     {
-        return sprintf("mysql -u %s -p'%s' -e 'use %s;source %s;' mysql",
+        return sprintf("mysql -u %s -p'%s' -e 'drop database if exists %s; create database %s; use %s;source %s;' mysql",
             config('database.connections.mysql2.username'),
             config('database.connections.mysql2.password'),
             config('database.connections.mysql2.database'),
+            config('database.connections.mysql2.database'),
+            config('database.connections.mysql2.database'),
             $path
         );
+    }
+
+    protected function bash($cmd)
+    {
+        return shell_exec($cmd);
     }
 
 }
