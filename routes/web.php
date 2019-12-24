@@ -42,4 +42,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/columns/info/{table}', ['uses' => 'TableController@info'])->name('columns.info');
     Route::get('/columns/info/{table}/store', ['uses' => 'TableController@store'])->name('columns.store');
+
+    Route::post('/import/{id}/execute', 'ImportController@execute')->name('import.execute');
 });

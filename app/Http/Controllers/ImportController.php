@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class ImportController extends Controller
 {
@@ -42,10 +43,8 @@ class ImportController extends Controller
     public function store(ImportStoreRequest $request)
     {
         $file = $request->file('file');
-//        $path = $file->store('sql');
-        $new_file_name = date('ymd_His_') . $file->getClientOriginalName();
         $path = $request->file('file')->storeAs(
-            'sql', $new_file_name
+            'sql', date('ymd_His_') . $file->getClientOriginalName()
         );
 
         Import::create([
@@ -53,7 +52,8 @@ class ImportController extends Controller
             'path' => $path,
             'user_id' => Auth::id()
         ]);
-        return $path;
+
+        return redirect()->route('import.index');
     }
 
     /**
@@ -96,8 +96,41 @@ class ImportController extends Controller
      * @param \App\Import $import
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Import $import)
+    public function destroy($id)
     {
-        //
+
+        Import::findOrFail($id)->destroy();
+        return redirect()->route('import.index');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Import $import
+     * @return \Illuminate\Http\Response
+     */
+    public function execute($id)
+    {
+        $file = Import::findOrFail($id);
+
+        $path = base_path() . '/storage/app/' . $file->path;
+
+        if (file_exists($path)) {
+            return $this->run($path);
+        } else {
+            return 'file not exists';
+        }
+
+    }
+
+    protected function run($path)
+    {
+        return sprintf("mysql -u %s -p'%s' -e 'use %s;source %s;' mysql",
+            config('database.connections.mysql2.username'),
+            config('database.connections.mysql2.password'),
+            config('database.connections.mysql2.database'),
+            $path
+        );
+    }
+
 }

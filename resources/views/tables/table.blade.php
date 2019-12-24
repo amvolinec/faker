@@ -2,6 +2,7 @@
     <thead class="thead-dark">
     <tr>
         @each('tables.th', $columns, 'column')
+        <th scope="col">{{ __('Actions') }}</th>
     </tr>
     </thead>
     <tbody>
@@ -10,6 +11,16 @@
             @foreach($columns as $key => $value)
                 <td>{{ $item->$value }}</td>
             @endforeach
+            <td>
+
+                <form action="{{ (url()->current() . '/' . $item->id . '/execute') }}" method="POST">
+                    @method('POST')
+                    @csrf
+                    <button class="btn btn-sm btn-outline-secondary"
+                            onclick="return confirm('Are you sure?')">{{ __('Execute') }}</button>
+                </form>
+
+            </td>
         </tr>
     @empty
         <tr>
