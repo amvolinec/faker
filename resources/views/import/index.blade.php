@@ -7,9 +7,18 @@
                 <div class="card">
                     <div class="card-header">
                         Tables
-                        <form class="float-right" action="{{ route('import.create') }}" method="GET">
-                            @method('get')
+                        <form class="float-right" action="{{ route('import.store') }}" method="post" enctype="multipart/form-data">
+                            @method('post')
                             @csrf
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Example file input</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
+                                @error('file')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             <button class="btn btn-success">{{ __('Import') }}</button>
                         </form>
                     </div>

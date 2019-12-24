@@ -15,11 +15,9 @@ class CreateImportsTable extends Migration
     {
         Schema::create('imports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('original_name');
             $table->char('name');
-            $table->char('charset')->default('utf8');
-            $table->string('filename');
-            $table->softDeletes();
+            $table->string('path');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
