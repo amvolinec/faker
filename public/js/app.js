@@ -1922,6 +1922,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1937,7 +1939,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     checkValues: function checkValues() {
-      if (this.caller_id.length > 3 && this.called_id.length > 3) this.isDisabled = false;
+      this.isDisabled = !(this.caller_id.length > 3 && this.called_id.length > 3);
     },
     changeValues: function changeValues() {
       var value = this.caller_id;
@@ -37505,9 +37507,10 @@ var render = function() {
       "button",
       {
         staticClass: "btn btn-sm btn-success d-inline ml-3",
-        class: { disabled: _vm.isDisabled }
+        class: { disabled: _vm.isDisabled },
+        attrs: { disabled: _vm.isDisabled }
       },
-      [_vm._v("Add")]
+      [_vm._v("Add\n    ")]
     )
   ])
 }

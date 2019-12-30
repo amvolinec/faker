@@ -23,7 +23,9 @@
                    name="is_answered" checked>
             <label class="custom-control-label" for="customCheck1">is_answered</label>
         </div>
-        <button class="btn btn-sm btn-success d-inline ml-3" v-bind:class="{ disabled: isDisabled }">Add</button>
+        <button class="btn btn-sm btn-success d-inline ml-3" v-bind:class="{ disabled: isDisabled }"
+                v-bind:disabled="isDisabled">Add
+        </button>
     </div>
 </template>
 
@@ -43,8 +45,7 @@
         },
         methods: {
             checkValues: function () {
-                if (this.caller_id.length > 3 && this.called_id.length > 3)
-                    this.isDisabled = false;
+                this.isDisabled = !(this.caller_id.length > 3 && this.called_id.length > 3);
             },
             changeValues: function () {
                 let value = this.caller_id;
