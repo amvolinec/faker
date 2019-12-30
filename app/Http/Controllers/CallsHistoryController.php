@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CallsHistory;
 use App\Http\Requests\CallsHistoryRequest;
+use App\Http\Requests\FakeCallRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -133,6 +134,28 @@ class CallsHistoryController extends Controller
     {
         $data = $this->getDataIn($qty);
         $this->getTransaction($data);
+    }
+
+    public function faker()
+    {
+        $items = CallsHistory::paginate(25);
+        $columns = Schema::connection('mysql2')->getColumnListing('fv_calls_history');
+        return view('calls.maker', ['items' => $items, 'columns' => $columns]);
+    }
+
+    public function fake(FakeCallRequest $request)
+    {
+        dd($request->all());
+        factory(CallsHistory::class, 1)->create([
+            'called_id' => $request->get('called_id'),
+            'caller_id' => $request->get('caller_id'),
+            'is_answered' => $request->has('is_answered') ? 1 : 0,
+            'waiting_duration' => $request->has('is_answered') ? $this->faker->randomNumber(2) : 0,
+            'call_duration' => $request->has('is_answered') ? $this->faker->randomNumber(3) : 0,
+            'direction' => $request->get('direction'),
+        ]);
+
+        return back()->withInput();
     }
 
     protected function bigCast($qty)
