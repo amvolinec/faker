@@ -37,9 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/calls/add', 'CallsHistoryController@add')->name('calls.add');
     Route::post('/calls/factory', 'CallsHistoryController@factory')->name('calls.factory');
 
+    Route::get('/calls/faker', 'CallsHistoryController@faker')->name('calls.faker');
+    Route::post('/calls/faker', 'CallsHistoryController@fake')->name('calls.fake');
+
     Route::get('/settings', 'SettingsController@get')->name('settings.get');
     Route::post('/settings/set', 'SettingsController@set')->name('settings.set');
 
     Route::get('/columns/info/{table}', ['uses' => 'TableController@info'])->name('columns.info');
     Route::get('/columns/info/{table}/store', ['uses' => 'TableController@store'])->name('columns.store');
+
+
 });
