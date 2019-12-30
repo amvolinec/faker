@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <span>Calls History</span>
-
-                        <form class="ml-3" action="{{ route('calls.fake') }}"
+                        <h3 class="text-right">Calls History</h3>
+                        <form class="ml-3 mt-3" action="{{ route('calls.fake') }}"
                               method="POST">
                             @csrf
                             @method('post')
@@ -17,7 +17,6 @@
 
                         </form>
                     </div>
-
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
