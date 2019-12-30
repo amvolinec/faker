@@ -1884,6 +1884,71 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FakerForm.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FakerForm.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isActive: true,
+      isDisabled: true,
+      caller_id: '',
+      called_id: '4401',
+      direction: 'in'
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  methods: {
+    checkValues: function checkValues() {
+      if (this.caller_id.length > 3 && this.called_id.length > 3) this.isDisabled = false;
+    },
+    changeValues: function changeValues() {
+      var value = this.caller_id;
+      this.caller_id = this.called_id;
+      this.called_id = value;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -37286,6 +37351,203 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FakerForm.vue?vue&type=template&id=3941c074&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FakerForm.vue?vue&type=template&id=3941c074& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "d-inline custom-control custom-radio" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.direction,
+            expression: "direction"
+          }
+        ],
+        staticClass: "custom-control-input",
+        attrs: {
+          type: "radio",
+          id: "defaultChecked",
+          name: "direction",
+          checked: "",
+          value: "in"
+        },
+        domProps: { checked: _vm._q(_vm.direction, "in") },
+        on: {
+          click: function($event) {
+            $event.stopPropagation()
+            return _vm.changeValues($event)
+          },
+          change: function($event) {
+            _vm.direction = "in"
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "label",
+        {
+          staticClass: "custom-control-label",
+          attrs: { for: "defaultChecked" }
+        },
+        [_vm._v("In")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-inline custom-control custom-radio" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.direction,
+            expression: "direction"
+          }
+        ],
+        staticClass: "custom-control-input",
+        attrs: {
+          type: "radio",
+          id: "defaultUnchecked",
+          name: "direction",
+          value: "out"
+        },
+        domProps: { checked: _vm._q(_vm.direction, "out") },
+        on: {
+          click: function($event) {
+            $event.stopPropagation()
+            return _vm.changeValues($event)
+          },
+          change: function($event) {
+            _vm.direction = "out"
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "label",
+        {
+          staticClass: "custom-control-label",
+          attrs: { for: "defaultUnchecked" }
+        },
+        [_vm._v("Out")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-inline custom-control" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.caller_id,
+            expression: "caller_id"
+          }
+        ],
+        staticClass: "form-control form-control-sm inline",
+        attrs: {
+          name: "caller_id",
+          type: "text",
+          placeholder: "caller_id",
+          value: "4401"
+        },
+        domProps: { value: _vm.caller_id },
+        on: {
+          keyup: _vm.checkValues,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.caller_id = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.called_id,
+            expression: "called_id"
+          }
+        ],
+        staticClass: "form-control form-control-sm inline",
+        attrs: { name: "called_id", type: "text", placeholder: "called_id" },
+        domProps: { value: _vm.called_id },
+        on: {
+          keyup: _vm.checkValues,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.called_id = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-success d-inline ml-3",
+        class: { disabled: _vm.isDisabled }
+      },
+      [_vm._v("Add")]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-inline custom-control custom-checkbox" },
+      [
+        _c("input", {
+          staticClass: "custom-control-input",
+          attrs: {
+            type: "checkbox",
+            id: "customCheck1",
+            name: "is_answered",
+            checked: ""
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "custom-control-label",
+            attrs: { for: "customCheck1" }
+          },
+          [_vm._v("is_answered")]
+        )
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -49448,6 +49710,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('faker-form', __webpack_require__(/*! ./components/FakerForm.vue */ "./resources/js/components/FakerForm.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49569,6 +49832,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/FakerForm.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/FakerForm.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FakerForm_vue_vue_type_template_id_3941c074___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FakerForm.vue?vue&type=template&id=3941c074& */ "./resources/js/components/FakerForm.vue?vue&type=template&id=3941c074&");
+/* harmony import */ var _FakerForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FakerForm.vue?vue&type=script&lang=js& */ "./resources/js/components/FakerForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FakerForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FakerForm_vue_vue_type_template_id_3941c074___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FakerForm_vue_vue_type_template_id_3941c074___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/FakerForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/FakerForm.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/FakerForm.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FakerForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FakerForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FakerForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FakerForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FakerForm.vue?vue&type=template&id=3941c074&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/FakerForm.vue?vue&type=template&id=3941c074& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FakerForm_vue_vue_type_template_id_3941c074___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FakerForm.vue?vue&type=template&id=3941c074& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FakerForm.vue?vue&type=template&id=3941c074&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FakerForm_vue_vue_type_template_id_3941c074___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FakerForm_vue_vue_type_template_id_3941c074___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
