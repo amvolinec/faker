@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\AgentStatus;
 use App\Http\Requests\AddAgentsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,17 +34,28 @@ class AgentController extends Controller
 
     public function destroy($id)
     {
+
+        DB::connection('mysql2')->table('fv_agents_status')->where('fv_agents_id', $id)->delete();
+
         $agent = Agent::findOrFail($id);
         $agent->delete();
+
         return back()->with('status', 'Success');
     }
 
     public function add(AddAgentsRequest $request)
     {
         $qty = $request->get('qty');
-
-        factory(Agent::class, 1)->create();
-
+        if ('true' == $request->get('is_old')) {
+            $this->addOld($qty);
+        } else {
+            factory(Agent::class, 1)->create();
+        }
         return back()->withInput();
+    }
+
+    protected function addOld($qty)
+    {
+        return 'Add Old ' . $qty;
     }
 }

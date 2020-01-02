@@ -22,6 +22,10 @@
                             </div>
 
                         @endforeach
+
+                        Status updated: {{ $agent->status->date_updated }} is
+                        logged: {{  $agent->status->is_logged_in }}
+
                     </div>
                 </div>
             </div>

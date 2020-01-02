@@ -12,11 +12,20 @@
                               method="POST">
                             @csrf
                             @method('post')
-                            <input class="form-control form-control-sm inline" name="qty" type="number" value="1"
-                                   min="1"
-                                   max="1000">
-                            <button class="btn btn-sm btn-success"
-                                    onclick="return confirm('Are you sure?')">{{ __('Add') }}</button>
+                            <div class="d-inline custom-control">
+                                <input class="form-control form-control-sm inline" name="qty" type="number" value="1"
+                                       min="1"
+                                       max="1000">
+                            </div>
+                            <div class="d-inline custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                       name="is_old" value="true">
+                                <label class="custom-control-label" for="customCheck1">FV2</label>
+                            </div>
+                            <div class="d-inline custom-control">
+                                <button class="btn btn-sm btn-success"
+                                        onclick="return confirm('Are you sure?')">{{ __('Add') }}</button>
+                            </div>
                         </form>
 
                     </div>

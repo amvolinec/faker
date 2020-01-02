@@ -14,4 +14,9 @@ class Agent extends Model
     {
         return $this->belongsToMany('App\Queue', 'fv_agents_to_queues', 'fv_agents_id', 'fv_queues_id');
     }
+
+    public function status()
+    {
+        return $this->hasOne('App\AgentStatus', 'fv_agents_id', 'id');
+    }
 }
