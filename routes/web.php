@@ -47,4 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/columns/info/{table}/store', ['uses' => 'TableController@store'])->name('columns.store');
 
     Route::post('/import/{id}/execute', 'ImportController@execute')->name('import.execute');
+
+    Route::get('agent', 'AgentController@index')->name('agent.index');
+    Route::post('agent', 'AgentController@add')->name('agent.add');
+    Route::get('agent/{id}', ['uses' => 'AgentController@show'])->name('agent.show');
+    Route::post('agent/{id}/destroy', ['uses' => 'AgentController@destroy'])->name('agent.destroy');
 });

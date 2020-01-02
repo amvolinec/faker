@@ -6,12 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Table:
-                        <strong>{{ $name }}</strong> Total: {{ $items->total()  }}
-                        @isset($prefix)
-                            <a class="btn btn-success float-right" href="{{ route($prefix.'.create') }}">Create</a>
-                        @endisset
-                        {{--                        <a href="{{ route('columns.info', $name) }}">Configure faker</a>--}}
+                        <h3>Agent {{ $agent->name }}</h3>
                     </div>
                     <div class="card-body overflow-auto">
                         @if (session('status'))
@@ -20,15 +15,16 @@
                             </div>
                         @endif
 
-                        @include('tables.table', ['columns' => $columns, 'items' => $items])
+                        @foreach($agent->queues as $queue)
 
-                        {{ $items->links() }}
+                            <div>
+                                {{ $queue->name }}
+                            </div>
+
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-
-

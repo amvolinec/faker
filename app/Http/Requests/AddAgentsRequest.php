@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class FakeCallRequest extends FormRequest
+class AddAgentsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,7 @@ class FakeCallRequest extends FormRequest
     public function rules()
     {
         return [
-            'caller_id' => ['required', 'numeric'],
-            'called_id' => ['required', 'numeric'],
+            'qty' => ['required', 'numeric', 'min:1', 'max:1000']
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -23,7 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tables = DB::connection('mysql2')->select('SHOW TABLES');
-        return view('home', compact('tables'));
+        try {
+            $tables = DB::connection('mysql2')->select('SHOW TABLES');
+            return view('home', compact('tables'));
+        } catch (QueryException $e) {
+            $msg = $e->getMessage();
+            session()->flash('status', 'SQL error ' . $msg);
+            return view('tables.error');
+        }
+
     }
 }

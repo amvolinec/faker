@@ -145,7 +145,6 @@ class CallsHistoryController extends Controller
 
     public function fake(FakeCallRequest $request)
     {
-        dd($request->all());
         factory(CallsHistory::class, 1)->create([
             'called_id' => $request->get('called_id'),
             'caller_id' => $request->get('caller_id'),
