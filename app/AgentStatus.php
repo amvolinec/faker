@@ -10,5 +10,8 @@ class AgentStatus extends Model
     protected $connection = 'mysql2';
     protected $table = 'fv_agents_status';
 
-
+    protected $fillable = [
+        'fv_agents_id',
+        'date_updated',
+    ];
 }

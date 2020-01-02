@@ -9,6 +9,7 @@ use App\Person;
 use App\Http\Requests\AddAgentsRequest;
 use App\PersonAuth;
 use App\Queue;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -72,27 +73,30 @@ class AgentController extends Controller
 
     protected function addOld($qty)
     {
+        $this->queues_out = Queue::where('is_outbound', 1)->where('id', '>', 0)->pluck('id');
+        $this->queues_local = Queue::where('is_local', 1)->where('id', '>', 0)->pluck('id');
+
         try {
-            $this->queues_out = Queue::where('is_outbound', 1)->where('id', '>', 0)->pluck('id');
-            $this->queues_local = Queue::where('is_local', 1)->where('id', '>', 0)->pluck('id');
+
             $person = $this->createPerson();
             $agent = $this->createAgent($person);
 
-            AgentStatus::create([
-                'fv_agents_id' => $agent->id,
-                'date_updated' => $this->date,
-            ]);
-
-            PersonAuth::create([
-                'fv_persons_id' => $person->id,
-                'fv_auth_types_id' => 3,
-                'fv_auth_ident' => $agent->id,
-                'date_created' => $this->date,
-            ]);
-
-        } catch (\Exception $e) {
-            return view('tables.error')->with('status', $e->getMessage());
+        } catch (Exception $e) {
+            session()->flash('status', $e->getMessage());
+            return view('tables.error');
         }
+
+        AgentStatus::create([
+            'fv_agents_id' => $agent->id,
+            'date_updated' => $this->date,
+        ]);
+
+        PersonAuth::create([
+            'fv_persons_id' => $person->id,
+            'fv_auth_types_id' => 3,
+            'fv_auth_ident' => $agent->id,
+            'date_created' => $this->date,
+        ]);
 
         return back()->with('status', 'New agent added');
     }
@@ -100,13 +104,14 @@ class AgentController extends Controller
     protected function createPerson()
     {
         return Person::create([
+            'cl_sys_id' => 'TESTAS',
             'company' => $this->faker->company,
             'name' => $this->faker->name,
             'email' => $this->faker->safeEmail,
             'phone' => '860600000',
             'username' => $this->faker->unique()->numberBetween(5000, 7000),
-            'password' => '824824',
-            'salt' => '',
+            'password' => '02c1a4ad445fe45a5f813728f0db219f23cdc51e83f8a0c7419058ab2cb5b353',
+            'salt' => 'GdMiECgm',
             'is_deleted' => 0,
             'date_created' => $this->date,
             'date_updated' => $this->date,
@@ -118,8 +123,10 @@ class AgentController extends Controller
 
     protected function createAgent(Person $person)
     {
+        $group = Group::where('name', 'agentai')->pluck('id');
+
         return Agent::create([
-            'groups_id' => Group::where('name', 'agentai')->first()->pluck('id'),
+            'groups_id' => isset($group[0]) ? $group[0] : 0,
             'date_created' => $this->date,
             'date_updated' => $this->date,
             'username' => $person->username,
