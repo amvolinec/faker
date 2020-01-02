@@ -89,6 +89,7 @@ class AgentController extends Controller
         AgentStatus::create([
             'fv_agents_id' => $agent->id,
             'date_updated' => $this->date,
+            'fv_pauses_id' => 0,
         ]);
 
         PersonAuth::create([
@@ -110,14 +111,15 @@ class AgentController extends Controller
             'email' => $this->faker->safeEmail,
             'phone' => '860600000',
             'username' => $this->faker->unique()->numberBetween(5000, 7000),
-            'password' => '02c1a4ad445fe45a5f813728f0db219f23cdc51e83f8a0c7419058ab2cb5b353',
-            'salt' => 'GdMiECgm',
+            'password' => '824824',
+//            'password' => '05f8d65498349a9273d9d7a6d4c15b39fad3e046b1f241fb88009976ab2763da',
+//            'salt' => '8ycawTIO',
             'is_deleted' => 0,
             'date_created' => $this->date,
             'date_updated' => $this->date,
-            'date_visited' => $this->date,
-            'date_pass_changed' => $this->date,
-            'changed_by_username' => 'faker',
+//            'date_visited' => $this->date,
+            'date_pass_changed' => date('Y-m-d H:i:s', strtotime("-1 months")),
+            'changed_by_username' => 'admin',
         ]);
     }
 

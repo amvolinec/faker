@@ -13,5 +13,6 @@ class AgentStatus extends Model
     protected $fillable = [
         'fv_agents_id',
         'date_updated',
+        'fv_pauses_id',
     ];
 }
