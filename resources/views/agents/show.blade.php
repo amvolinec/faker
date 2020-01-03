@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -15,6 +15,7 @@
                             </div>
                         @endif
 
+                        <h5 class="mt-3">Queues:</h5>
                         @foreach($agent->queues as $queue)
 
                             <div>
@@ -23,7 +24,8 @@
 
                         @endforeach
 
-                        Status updated: {{ $agent->status->date_updated }} is
+                        <h5 class="mt-3">Status:</h5>
+                        Updated: {{ $agent->status->date_updated }} is
                         logged: {{  $agent->status->is_logged_in }}
 
                     </div>

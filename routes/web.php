@@ -52,4 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::post('agent', 'AgentController@add')->name('agent.add');
     Route::get('agent/{id}', ['uses' => 'AgentController@show'])->name('agent.show');
     Route::post('agent/{id}/destroy', ['uses' => 'AgentController@destroy'])->name('agent.destroy');
+
+    Route::get('/queues', 'AgentController@queues')->name('agent.queues');
+
+
 });
