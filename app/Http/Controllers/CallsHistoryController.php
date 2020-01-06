@@ -7,6 +7,7 @@ use App\CallsHistory;
 use App\CallTheme;
 use App\Http\Requests\CallsHistoryRequest;
 use App\Http\Requests\FakeCallRequest;
+use App\Job;
 use App\Jobs\ProcessCalls;
 use App\Queue;
 use Illuminate\Http\Request;
@@ -175,7 +176,7 @@ class CallsHistoryController extends Controller
             dispatch((new ProcessCalls($cycles[1]))->onQueue('calls'));
         }
 
-        session()->flash('status', 'Your job added to Queue');
+        session()->flash('status', 'Your job added to Queue. To run queue: php artisan queue:work --queue=calls');
         return redirect()->route('calls.history');
     }
 
@@ -211,7 +212,7 @@ class CallsHistoryController extends Controller
         return back()->withInput();
     }
 
-    public function bigCast($qty)
+    protected function bigCast($qty)
     {
         $max_rows = config('app.max_insert_rows', 2000);
         $cycles = gmp_div_qr($qty, $max_rows, GMP_ROUND_ZERO);

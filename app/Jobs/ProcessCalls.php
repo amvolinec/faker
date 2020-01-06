@@ -38,7 +38,7 @@ class ProcessCalls implements ShouldQueue
     public function handle()
     {
         try {
-            $this->caller->bigCast($this->qty);
+            $this->caller->cast($this->qty);
         } catch (\Exception $e) {
             Log::error('ProcessCalls error ' . $e->getMessage());
         }

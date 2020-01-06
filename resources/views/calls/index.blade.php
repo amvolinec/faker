@@ -18,7 +18,7 @@
                               method="POST">
                             @csrf
                             @method('post')
-                            <input class="form-control inline" name="qty" type="number" value="10" min="1"
+                            <input class="form-control inline" name="qty" type="number" value="10000" min="1"
                                    max="10000000">
                             <button class="btn btn-success"
                                     onclick="return confirm('Are you sure?')">{{ __('Add') }}</button>
