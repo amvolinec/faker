@@ -7,6 +7,7 @@ use App\CallsHistory;
 use App\CallTheme;
 use App\Http\Requests\CallsHistoryRequest;
 use App\Http\Requests\FakeCallRequest;
+use App\Jobs\ProcessCalls;
 use App\Queue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -62,7 +63,6 @@ class CallsHistoryController extends Controller
     public function add(CallsHistoryRequest $request)
     {
         $time_start = microtime(true);
-
         $qty = $request->input('qty');
 
         $this->agents = $this->getAgents();
@@ -160,6 +160,15 @@ class CallsHistoryController extends Controller
         return Agent::findOrFail($agent_id);
     }
 
+    public function job(CallsHistoryRequest $request)
+    {
+        dispatch((new ProcessCalls($request->input('qty')))->onQueue('calls'));
+        
+//        ProcessCalls::dispatch($request->input('qty'))->onQueue('queue1');
+        session()->flash('status', 'This job added to Queue');
+        return redirect()->route('calls.history');
+    }
+
     /**
      * @param $qty
      * @throws \Throwable
@@ -167,7 +176,6 @@ class CallsHistoryController extends Controller
     public function cast($qty): void
     {
         $this->getData();
-
         $data = $this->getDataIn($qty);
         $this->getTransaction($data);
     }
@@ -193,7 +201,7 @@ class CallsHistoryController extends Controller
         return back()->withInput();
     }
 
-    protected function bigCast($qty)
+    public function bigCast($qty)
     {
         $max_rows = config('app.max_insert_rows', 2000);
         $cycles = gmp_div_qr($qty, $max_rows, GMP_ROUND_ZERO);
@@ -205,7 +213,7 @@ class CallsHistoryController extends Controller
         if ($cycles[1] > 0) {
             $this->cast($cycles[1]);
         }
-        Log::info('Cycles: ' . $cycles[0] . ' Rest: ' . $cycles[1]);
+        Log::info('Job finished. Cycles: ' . $cycles[0] . ' Rest: ' . $cycles[1]);
     }
 
     protected function getData()

@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/calls/history', 'CallsHistoryController@index')->name('calls.history');
     Route::delete('/calls/history/flash', 'CallsHistoryController@flash')->name('calls.flash');
-    Route::post('/calls/add', 'CallsHistoryController@add')->name('calls.add');
+    Route::post('/calls/add', 'CallsHistoryController@job')->name('calls.add');
     Route::post('/calls/factory', 'CallsHistoryController@factory')->name('calls.factory');
 
     Route::get('/calls/faker', 'CallsHistoryController@faker')->name('calls.faker');
