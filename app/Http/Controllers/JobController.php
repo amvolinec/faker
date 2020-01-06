@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    protected function jobCount()
+    protected function count()
     {
         return Job::all()->count();
     }

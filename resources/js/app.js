@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('faker-form', require('./components/FakerForm.vue').default);
+Vue.component('jobs-count', require('./components/JobsCount.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

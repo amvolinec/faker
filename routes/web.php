@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/calls/faker', 'CallsHistoryController@faker')->name('calls.faker');
     Route::post('/calls/faker', 'CallsHistoryController@fake')->name('calls.fake');
 
-    Route::get('/job/count', 'JobController@count')->name('job.count');
+    Route::get('/jobs/count', 'JobController@count')->name('jobs.count');
 
     Route::get('/settings', 'SettingsController@get')->name('settings.get');
     Route::post('/settings/set', 'SettingsController@set')->name('settings.set');
