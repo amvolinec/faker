@@ -27,6 +27,7 @@ class CallsHistoryController extends Controller
     {
         $this->middleware('auth');
         $this->faker = Faker::create('lt_LT');
+        ini_set('max_execution_time', 0);
     }
 
     public function index()
@@ -39,7 +40,6 @@ class CallsHistoryController extends Controller
 
     public function flash()
     {
-
         DB::connection('mysql2')->table('fv_call_review_record')->delete();
         DB::connection('mysql2')->table('fv_call_review')->delete();
         DB::connection('mysql2')->table('fv_calls_history')->delete();
