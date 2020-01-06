@@ -162,10 +162,20 @@ class CallsHistoryController extends Controller
 
     public function job(CallsHistoryRequest $request)
     {
-        dispatch((new ProcessCalls($request->input('qty')))->onQueue('calls'));
+        $qty = $request->input('qty');
+
+        $max_rows = config('app.max_insert_rows', 1000);
+        $cycles = gmp_div_qr($qty, $max_rows, GMP_ROUND_ZERO);
+
+        for ($i = 1; $i <= $cycles[0]; $i++) {
+            dispatch((new ProcessCalls($max_rows))->onQueue('calls'));
+        }
+
+        if ($cycles[1] > 0) {
+            dispatch((new ProcessCalls($cycles[1]))->onQueue('calls'));
+        }
 
         session()->flash('status', 'Your job added to Queue');
-
         return redirect()->route('calls.history');
     }
 
