@@ -2,7 +2,7 @@
     <thead class="thead-dark">
     <tr>
         @each('tables.th', $columns, 'column')
-        <th scope="col">{{ __('Actions') }}</th>
+{{--        <th scope="col">{{ __('Actions') }}</th>--}}
     </tr>
     </thead>
     <tbody>
@@ -13,12 +13,12 @@
             @endforeach
             <td>
 
-                <form action="{{ (url()->current() . '/' . $item->id . '/execute') }}" method="POST">
-                    @method('POST')
-                    @csrf
-                    <button class="btn btn-sm btn-outline-secondary"
-                            onclick="return confirm('Are you sure?')">{{ __('Execute') }}</button>
-                </form>
+{{--                <form action="{{ (url()->current() . '/' . $item->id . '/execute') }}" method="POST">--}}
+{{--                    @method('POST')--}}
+{{--                    @csrf--}}
+{{--                    <button class="btn btn-sm btn-outline-secondary"--}}
+{{--                            onclick="return confirm('Are you sure?')">{{ __('Execute') }}</button>--}}
+{{--                </form>--}}
 
             </td>
         </tr>
