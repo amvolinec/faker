@@ -23,6 +23,7 @@
                             <button class="btn btn-success"
                                     onclick="return confirm('Are you sure?')">{{ __('Add') }}</button>
                         </form>
+                        <jobs-count></jobs-count>
                     </div>
 
                     <div class="card-body">
