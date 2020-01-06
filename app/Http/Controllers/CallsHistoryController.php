@@ -163,9 +163,9 @@ class CallsHistoryController extends Controller
     public function job(CallsHistoryRequest $request)
     {
         dispatch((new ProcessCalls($request->input('qty')))->onQueue('calls'));
-        
-//        ProcessCalls::dispatch($request->input('qty'))->onQueue('queue1');
-        session()->flash('status', 'This job added to Queue');
+
+        session()->flash('status', 'Your job added to Queue');
+
         return redirect()->route('calls.history');
     }
 
