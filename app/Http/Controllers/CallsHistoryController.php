@@ -35,7 +35,7 @@ class CallsHistoryController extends Controller
     public function index()
     {
         $header = 'Calls History';
-        $items = CallsHistory::orderBy('id', 'desc')->paginate(25);
+        $items = CallsHistory::orderBy('id', 'desc')->paginate(50);
         $columns = Schema::connection('mysql2')->getColumnListing('fv_calls_history');
         return view('calls.index', ['header' => $header, 'items' => $items, 'columns' => $columns]);
     }
@@ -176,7 +176,7 @@ class CallsHistoryController extends Controller
             dispatch((new ProcessCalls($cycles[1]))->onQueue('calls'));
         }
 
-        session()->flash('status', 'Your job added to Queue. To run queue: php artisan queue:work --queue=calls');
+        session()->flash('status', 'Your job added to Queue. To run Queue: php artisan queue:work --queue=calls');
         return redirect()->route('calls.history');
     }
 
