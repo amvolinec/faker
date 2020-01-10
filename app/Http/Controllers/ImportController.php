@@ -21,7 +21,7 @@ class ImportController extends Controller
     {
         $columns = Schema::getColumnListing('imports');
         $items = DB::table('imports')->paginate(20);
-        return view('import.index', ['columns' => $columns, 'items' => $items]);
+        return view('import.index', ['columns' => $columns, 'items' => $items, 'execute' => true]);
     }
 
     /**
@@ -52,6 +52,8 @@ class ImportController extends Controller
             'path' => $path,
             'user_id' => Auth::id()
         ]);
+
+
 
         return redirect()->route('import.index');
     }

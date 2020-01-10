@@ -35,7 +35,7 @@
                             </div>
                         @endif
 
-                        @include('tables.table', ['columns' => $columns, 'items' => $items])
+                        @include('tables.table', ['columns' => $columns, 'items' => $items, 'execute' => true])
 
                     </div>
                 </div>

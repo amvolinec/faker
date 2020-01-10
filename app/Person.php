@@ -25,5 +25,6 @@ class Person extends Model
         'date_visited',
         'date_pass_changed',
         'changed_by_username',
+        'date_cl_sys_synched',
     ];
 }

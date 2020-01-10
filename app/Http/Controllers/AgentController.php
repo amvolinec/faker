@@ -147,7 +147,9 @@ class AgentController extends Controller
             'is_deleted' => 0,
             'date_created' => $this->date,
             'date_updated' => $this->date,
+            'date_visited' => $this->date,
             'date_pass_changed' => date('Y-m-d H:i:s', strtotime("-1 months")),
+            'date_cl_sys_synched' => date('Y-m-d H:i:s', strtotime("-1 day")),
             'changed_by_username' => 'admin',
         ]);
     }
