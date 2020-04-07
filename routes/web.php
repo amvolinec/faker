@@ -24,6 +24,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/sms', 'SmsController@index')->name('home');
+
 Route::middleware('auth')->group(function () {
 
     Route::resources([
@@ -56,6 +58,5 @@ Route::middleware('auth')->group(function () {
     Route::post('agent/{id}/destroy', ['uses' => 'AgentController@destroy'])->name('agent.destroy');
 
     Route::get('/queues', 'AgentController@queues')->name('agent.queues');
-
 
 });
