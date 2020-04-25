@@ -42,6 +42,21 @@
 
                             </div>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ __('Evaluations') }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('matrix.index') }}">{{ __('Matrix') }}</a>
+                                <a class="dropdown-item" href="{{ route('group.index') }}">{{ __('Group') }}</a>
+                                <a class="dropdown-item" href="{{ route('criteria.index') }}">{{ __('Criteria') }}</a>
+                                <a class="dropdown-item" href="{{ route('option.index') }}">{{ __('Option') }}</a>
+
+                            </div>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('agent.index') }}">{{ __('Agents') }}</a>
                         </li>

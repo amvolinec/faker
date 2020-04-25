@@ -5,6 +5,9 @@
         @isset($execute)
             <th scope="col">{{ __('Actions') }}</th>
         @endisset
+        @isset($delete)
+            <th scope="col">{{ __('Actions') }}</th>
+        @endisset
     </tr>
     </thead>
     <tbody>
@@ -22,6 +25,18 @@
                                 onclick="return confirm('Are you sure?')">{{ __('Execute') }}</button>
                     </form>
                 @endisset
+
+                @isset($delete)
+                    <a class="btn btn-sm btn-secondary float-left" href="{{ (url()->current() . '/' . $item->id) . '/edit' }}"
+                       style="margin: 0 8px;">Edit</a>
+                    <form class="float-left" action="{{ (url()->current() . '/' . $item->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-sm btn-outline-secondary"
+                                onclick="return confirm('Are you sure?')">{{ __('Delete') }}</button>
+                    </form>
+                @endisset
+
             </td>
         </tr>
     @empty

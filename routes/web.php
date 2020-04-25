@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/sms', 'SmsController@index')->name('home');
+Route::get('/sms', 'SmsController@index')->name('sms');
 
 Route::middleware('auth')->group(function () {
 
@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
         'import' => 'ImportController',
         'table' => 'TableController',
         'column' => 'ColumnController',
+        'matrix' => 'MatrixController',
+        'group' => 'EvGroupController',
+        'criteria' => 'CriteriaController',
+        'option' => 'OptionController',
     ]);
 
     Route::get('/calls/history', 'CallsHistoryController@index')->name('calls.history');
