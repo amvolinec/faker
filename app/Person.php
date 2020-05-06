@@ -11,20 +11,32 @@ class Person extends Model
     protected $table = 'fv_persons';
 
     protected $fillable = [
-        'cl_sys_id',
-        'company',
-        'name',
-        'email',
-        'phone',
         'username',
         'password',
         'salt',
-        'is_deleted',
+        'name',
+        'email',
+        'phone',
+        'company',
+        'see_status',
+        'date_pass_changed',
         'date_created',
         'date_updated',
         'date_visited',
-        'date_pass_changed',
         'changed_by_username',
-        'date_cl_sys_synched',
+        'is_deleted',
     ];
+
+    public function permission() {
+        return $this->hasOne('App\PersonPermission');
+    }
+
+    public function roles() {
+        return $this->hasOne('App\AssignedRole', 'entity_id', 'id');
+    }
+
+    public function agent()
+    {
+        return $this->hasOne('App\Agent');
+    }
 }

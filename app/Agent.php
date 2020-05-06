@@ -11,25 +11,27 @@ class Agent extends Model
     protected $table = 'fv_agents';
 
     protected $fillable = [
-        'groups_id',
-        'date_created',
-        'date_updated',
+        'person_id',
         'username',
         'password',
-        'name',
-        'email',
-        'fv_queues_id_outbound',
-        'fv_queues_id_local',
+        'context',
         'is_password_required',
+        'is_deleted',
+        'listen_status',
     ];
 
-    public function queues()
+    public function person()
     {
-        return $this->belongsToMany('App\Queue', 'fv_agents_to_queues', 'fv_agents_id', 'fv_queues_id');
+        return $this->belongsTo('App\Person', 'person_id', 'id');
     }
 
-    public function status()
-    {
-        return $this->hasOne('App\AgentStatus', 'fv_agents_id', 'id');
-    }
+//    public function queues()
+//    {
+//        return $this->belongsToMany('App\Queue', 'fv_agents_to_queues', 'fv_agents_id', 'fv_queues_id');
+//    }
+//
+//    public function status()
+//    {
+//        return $this->hasOne('App\AgentStatus', 'fv_agents_id', 'id');
+//    }
 }

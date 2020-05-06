@@ -125,6 +125,9 @@ return [
 
     'log_queries' => env('LOG_QUERIES', false),
     'max_insert_rows' => env('MAX_INSERT_ROWS', 1000),
+
+    'fv_version' => env('FV_VERSION', 3),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
