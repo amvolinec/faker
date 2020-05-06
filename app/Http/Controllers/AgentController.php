@@ -63,11 +63,11 @@ class AgentController extends Controller
 
     public function add(AddAgentsRequest $request)
     {
-        $qty = $request->get('qty');
+        $qty = (int)$request->get('qty');
         if ('true' == $request->get('is_old')) {
             return $this->addOld($qty);
         } else {
-            factory(Person::class)->create();
+            factory(Person::class, $qty)->create();
 //            factory(Agent::class, 1)->create();
             return back()->withInput();
         }

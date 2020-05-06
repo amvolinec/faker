@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
         'group' => 'EvGroupController',
         'criteria' => 'CriteriaController',
         'option' => 'OptionController',
+        'queue' => 'QueueController',
     ]);
 
     Route::get('/calls/history', 'CallsHistoryController@index')->name('calls.history');
@@ -62,5 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::post('agent/{id}/destroy', ['uses' => 'AgentController@destroy'])->name('agent.destroy');
 
     Route::get('/queues', 'AgentController@queues')->name('agent.queues');
+
+    Route::post('queue', 'QueueController@add')->name('queue.add');
 
 });

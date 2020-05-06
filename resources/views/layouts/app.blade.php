@@ -60,6 +60,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('agent.index') }}">{{ __('Agents') }}</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('queue.index') }}">{{ __('Queues') }}</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('import.index') }}">{{ __('Import') }}</a>
                         </li>
