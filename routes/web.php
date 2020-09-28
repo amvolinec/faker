@@ -66,4 +66,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('queue', 'QueueController@add')->name('queue.add');
 
+    Route::get('simple', 'SimpleController@export')->name('simple');
+
 });

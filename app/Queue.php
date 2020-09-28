@@ -13,4 +13,10 @@ class Queue extends Model
     protected $fillable = [
         'name', 'alias', 'timeout', 'wrapuptime', 'weight', 'sla'
     ];
+
+    public function persons(){
+        return $this->belongsToMany('App\Person', 'fv_persons_to_queues', 'fv_queues_id', 'fv_persons_id');
+    }
+
+
 }
