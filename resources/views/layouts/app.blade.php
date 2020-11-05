@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('scripts')
 </head>
 <body>
 <div id="app">
@@ -63,6 +64,9 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('queue.index') }}">{{ __('Queues') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('theme.index') }}">{{ __('Calls Themes') }}</a>
                         </li>
 
                         <li class="nav-item">

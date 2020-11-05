@@ -18,5 +18,7 @@ class Queue extends Model
         return $this->belongsToMany('App\Person', 'fv_persons_to_queues', 'fv_queues_id', 'fv_persons_id');
     }
 
-
+    public function themes(){
+        return $this->hasMany('App\Theme', 'fv_queues_id', 'id');
+    }
 }

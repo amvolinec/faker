@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
         'criteria' => 'CriteriaController',
         'option' => 'OptionController',
         'queue' => 'QueueController',
+        'theme' => 'ThemeController',
     ]);
 
     Route::get('/calls/history', 'CallsHistoryController@index')->name('calls.history');
@@ -65,6 +66,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/queues', 'AgentController@queues')->name('agent.queues');
 
     Route::post('queue', 'QueueController@add')->name('queue.add');
+
+    Route::post('theme', 'ThemeController@add')->name('theme.add');
+    Route::post('theme-find', 'ThemeController@find')->name('theme.find');
 
     Route::get('contact', 'ContactController@index')->name('contact.index');
     Route::post('contact', 'ContactController@add')->name('contact.add');
