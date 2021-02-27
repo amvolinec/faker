@@ -11,7 +11,7 @@ $factory->define(Person::class, function (Faker $faker) {
     $password = hash('sha256', '824824' . $salt);
 
     return [
-        'username' => $faker->unique()->userName,
+        'username' => getUniqUsername($faker),
         'password' => $password,
         'salt' => $salt,
         'name' => $faker->firstName,
@@ -31,3 +31,14 @@ $factory->afterCreating(App\Person::class, function ($person, $faker) {
     $person->roles()->save(factory(App\AssignedRole::class)->make());
     $person->agent()->save(factory(App\Agent::class)->make());
 });
+
+function getUniqUsername($faker) {
+    $original = false;
+    do {
+        $username = $faker->unique()->numberBetween(1000, 9999);
+        if (!Person::where('username', $username)->exists()) {
+            $original = true;
+        }
+    } while (!$original);
+    return $username;
+}

@@ -136,12 +136,13 @@ class AgentController extends Controller
 
     protected function createPerson()
     {
+        $email = $this->getUniqEmail();
 
         return Person::create([
             'cl_sys_id' => 'TESTAS',
             'company' => $this->faker->company,
             'name' => $this->faker->name,
-            'email' => $this->faker->safeEmail,
+            'email' => $this->getUniqEmail(),
             'phone' => '860600000',
             'username' => $this->getUsername(),
             'password' => '824824',
@@ -183,5 +184,16 @@ class AgentController extends Controller
             'fv_queues_id_local' => $this->faker->randomElement($this->queues_local),
             'is_password_required' => 1,
         ]);
+    }
+
+    protected function getUniqEmail(){
+        $original = false;
+        do {
+            $email = $this->faker->unique()->safeEmail;
+            if (!Person::where('email', $email)->exists()) {
+                $original = true;
+            }
+        } while (!$original);
+        return $email;
     }
 }
