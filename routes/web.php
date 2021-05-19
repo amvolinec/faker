@@ -75,4 +75,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('simple', 'SimpleController@export')->name('simple');
 
+    Route::get('mail', 'MailController@index')->name('mail.index');
+    Route::post('mail/send', 'MailController@send')->name('mail.send');
+
 });
