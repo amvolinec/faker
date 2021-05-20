@@ -26,33 +26,36 @@
 
                             <div class="row">
 
-                                <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
 
-                                    <div class="form-group col-md-6">
-                                        <label class="form-label" for="to">Email address</label>
-                                        <select class="form-control" name="to" id="to">
-                                            <option value="aleksandr.volynec@addendum.lt">aleksandr.volynec@addendum.lt
-                                            </option>
-                                            <option value="oscars.rains@gmail.com" selected>oscars.rains@gmail.com
-                                            </option>
-                                        </select>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="to">To:</label>
+                                            <select class="form-control" name="to" id="to">
+                                                <option value="aleksandr.volynec@addendum.lt">
+                                                    aleksandr.volynec@addendum.lt
+                                                </option>
+                                                <option value="oscars.rains@gmail.com" selected>oscars.rains@gmail.com
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cc">Cc:</label>
+                                            <textarea class="form-control" name="cc"></textarea>
+                                        </div>
+
                                     </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label class="form-label" for="cc">Cc</label>
-                                        <textarea class="form-control" name="cc"></textarea>
-                                    </div>
-
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <label class="form-label" for="subject">Subject</label>
+                                    <label class="form-label" for="subject">Subject:</label>
                                     <input class="form-control" name="subject"
                                            value="{{ $subject ?? 'Testinis laiškas' }}">
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <label class="form-label" for="text">Message</label>
+                                    <label class="form-label" for="text">Message:</label>
                                     <textarea rows="10" class="form-control"
                                               name="text">{{ $text ?? 'Text message' }}</textarea>
                                 </div>
@@ -61,7 +64,7 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="form-label" for="type">Content Type</label>
+                                            <label class="form-label" for="type">Content Type:</label>
                                             <select class="form-control" name="type" id="type">
                                                 <option value="text/plain" selected>text/plain</option>
                                                 <option value="text/html">text/html</option>
@@ -69,7 +72,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label class="form-label" for="encoding">Encoding</label>
+                                            <label class="form-label" for="encoding">Encoding:</label>
                                             <select class="form-control" name="encoding" id="encoding">
                                                 <option value="base64" selected>base64</option>
                                                 <option value="base64">quoted-printable</option>
@@ -81,15 +84,17 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-6 form-check m-3">
+                                <div class="form-group col-md-6 form-check ml-3">
                                     <input name="image" type="checkbox" class="form-check-input" id="image"
                                            checked>
                                     <label class="form-check-label" for="image">attachment</label>
                                 </div>
 
-                                <div class="btn-group pl-3">
-                                    <button class="btn btn-sm btn-primary" type="submit">Send</button>
-                                    <button class="btn btn-sm btn-secondary" type="reset">Cancel</button>
+                                <div class="col-md-12">
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-primary" type="submit">Send</button>
+                                        <button class="btn btn-sm btn-secondary" type="reset">Cancel</button>
+                                    </div>
                                 </div>
 
                             </div>
