@@ -25,6 +25,7 @@ class MailController extends Controller
 
         $settings = [
             'to' => $request->get('to'),
+            'cc' => $request->get('cc'),
             'text' => $text,
             'encoding' => $request->get('encoding'),
             'subject' => $request->get('subject') ?? $faker->sentence(2),
@@ -35,6 +36,13 @@ class MailController extends Controller
         Mail::raw($settings['text'], function ($m) use ($settings) {
             $m->from(env('MAIL_FROM'), env('APP_NAME'));
             $m->to($settings['to']);
+
+            if (!empty($settings['cc'])) {
+                $cc = explode(',', $settings['cc']);
+                $result = array_map('trim', $cc);
+                $m->cc($result);
+            }
+
             $m->subject($settings['subject']);
 
             $m->getHeaders()->addTextHeader('MIME-Version', "1.0");
@@ -54,7 +62,8 @@ class MailController extends Controller
         return redirect('mail')->with('status', 'Success');
     }
 
-    protected function getHtml($text) {
+    protected function getHtml($text)
+    {
         $text = str_replace("\r\n", '<br>', $text);
         $html = <<<EOF
 <html><head>

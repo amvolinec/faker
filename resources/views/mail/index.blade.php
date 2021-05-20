@@ -24,27 +24,38 @@
                             @method('post')
                             @csrf
 
-                            <row>
+                            <div class="row">
 
-                                <div class="form-group col-md-6">
-                                    <label class="form-label" for="to">Email address</label>
-                                    <select class="form-control" name="to" id="to">
-                                        <option value="aleksandr.volynec@addendum.lt">aleksandr.volynec@addendum.lt
-                                        </option>
-                                        <option value="oscars.rains@gmail.com" selected>oscars.rains@gmail.com</option>
-                                    </select>
+                                <div class="row">
+
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="to">Email address</label>
+                                        <select class="form-control" name="to" id="to">
+                                            <option value="aleksandr.volynec@addendum.lt">aleksandr.volynec@addendum.lt
+                                            </option>
+                                            <option value="oscars.rains@gmail.com" selected>oscars.rains@gmail.com
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="cc">Cc</label>
+                                        <textarea class="form-control" name="cc"></textarea>
+                                    </div>
+
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label class="form-label" for="subject">Subject</label>
-                                    <input class="form-control" name="subject" value="{{ $subject ?? 'Testinis laiškas' }}">
+                                    <input class="form-control" name="subject"
+                                           value="{{ $subject ?? 'Testinis laiškas' }}">
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label class="form-label" for="text">Message</label>
-                                    <textarea rows="10" class="form-control" name="text">{{ $text ?? 'Text message' }}</textarea>
+                                    <textarea rows="10" class="form-control"
+                                              name="text">{{ $text ?? 'Text message' }}</textarea>
                                 </div>
-
 
 
                                 <div class="col-md-12">
@@ -81,7 +92,7 @@
                                     <button class="btn btn-sm btn-secondary" type="reset">Cancel</button>
                                 </div>
 
-                            </row>
+                            </div>
                         </form>
                     </div>
                 </div>
