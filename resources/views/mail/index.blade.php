@@ -26,31 +26,48 @@
 
                             <row>
 
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label class="form-label" for="to">Email address</label>
-                                    <select class="form-control"  name="to" id="to">
-                                        <option value="aleksandr.volynec@addendum.lt" selected>aleksandr.volynec@addendum.lt</option>
-                                        <option value="oscars.rains@gmail.com">oscars.rains@gmail.com</option>
+                                    <select class="form-control" name="to" id="to">
+                                        <option value="aleksandr.volynec@addendum.lt">aleksandr.volynec@addendum.lt
+                                        </option>
+                                        <option value="oscars.rains@gmail.com" selected>oscars.rains@gmail.com</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label class="form-label" for="text">Message</label>
-                                    <textarea class="form-control" name="text">{{ $text ?? 'Text message' }}</textarea>
+                                    <textarea rows="10" class="form-control" name="text">{{ $text ?? 'Text message' }}</textarea>
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                    <label class="form-label" for="encoding">Encoding</label>
-                                    <select class="form-control" name="encoding" id="encoding">
-                                        <option value="base64" selected>base64</option>
-                                        <option value="base64">quoted-printable</option>
-                                        <option value="base64">8bit</option>
-                                        <option value="base64">7bit</option>
-                                    </select>
+
+
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="type">Content Type</label>
+                                            <select class="form-control" name="type" id="type">
+                                                <option value="text/plain" selected>text/plain</option>
+                                                <option value="text/html">text/html</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="encoding">Encoding</label>
+                                            <select class="form-control" name="encoding" id="encoding">
+                                                <option value="base64" selected>base64</option>
+                                                <option value="base64">quoted-printable</option>
+                                                <option value="base64">8bit</option>
+                                                <option value="base64">7bit</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
                                 </div>
 
-                                <div class="form-group form-check m-3">
-                                    <input name="image" type="checkbox" class="form-check-input" id="image" checked>
+                                <div class="form-group col-md-6 form-check m-3">
+                                    <input name="image" type="checkbox" class="form-check-input" id="image"
+                                           checked>
                                     <label class="form-check-label" for="image">attachment</label>
                                 </div>
 

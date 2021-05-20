@@ -24,6 +24,7 @@ class MailController extends Controller
             'encoding' => $request->get('encoding'),
             'subject' => $faker->sentence(2),
             'image' => $request->get('image'),
+            'type' => $request->get('type') . '; charset=utf-8',
         ];
 
         Mail::raw($settings['text'], function ($m) use ($settings) {
@@ -32,13 +33,19 @@ class MailController extends Controller
             $m->subject($settings['subject']);
 
             $m->getHeaders()->addTextHeader('MIME-Version', "1.0");
-            $m->getHeaders()->addTextHeader('Content-Type', 'text/plain; charset=utf-8');
+            $m->getHeaders()->addTextHeader('Content-Type', $settings['type']);
             $m->getHeaders()->addTextHeader('Content-Transfer-Encoding', $settings['encoding']);
+            $m->getHeaders()->addTextHeader('Content-Language', 'lt-LT');
 
             if ($settings['image'] === 'on') {
                 $m->attach(asset('/docs/voice.png'), [
                     'as' => 'voice.png',
                     'mime' => 'image/png'
+                ]);
+
+                $m->attach(asset('/docs/test.html'), [
+                    'as' => 'test.html',
+                    'mime' => 'text/html'
                 ]);
             }
 
