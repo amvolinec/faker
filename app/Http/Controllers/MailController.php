@@ -12,17 +12,22 @@ class MailController extends Controller
 {
     public function index(Faker $faker)
     {
-        return view('mail.index', ['text' => $faker->sentence(5)]);
+        return view('mail.index', [
+            'text' => $faker->paragraph(5),
+            'subject' => $faker->sentence(3),
+        ]);
     }
 
 
     public function send(MailRequest $request, Faker $faker)
     {
+        $text = $request->get('type') === 'text/html' ? $this->getHtml($request->get('text')) : $request->get('text');
+
         $settings = [
             'to' => $request->get('to'),
-            'text' => $request->get('text'),
+            'text' => $text,
             'encoding' => $request->get('encoding'),
-            'subject' => $faker->sentence(2),
+            'subject' => $request->get('subject') ?? $faker->sentence(2),
             'image' => $request->get('image'),
             'type' => $request->get('type') . '; charset=utf-8',
         ];
@@ -42,15 +47,26 @@ class MailController extends Controller
                     'as' => 'voice.png',
                     'mime' => 'image/png'
                 ]);
-
-                $m->attach(asset('/docs/test.html'), [
-                    'as' => 'test.html',
-                    'mime' => 'text/html'
-                ]);
             }
 
         });
 
         return redirect('mail')->with('status', 'Success');
+    }
+
+    protected function getHtml($text) {
+        $text = str_replace("\r\n", '<br>', $text);
+        $html = <<<EOF
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    <p>
+    %s
+    </p>
+</body>
+</html>
+EOF;
+        return sprintf($html, $text);
     }
 }

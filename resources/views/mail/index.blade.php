@@ -36,6 +36,11 @@
                                 </div>
 
                                 <div class="form-group col-md-12">
+                                    <label class="form-label" for="subject">Subject</label>
+                                    <input class="form-control" name="subject" value="{{ $subject ?? 'Testinis laiškas' }}">
+                                </div>
+
+                                <div class="form-group col-md-12">
                                     <label class="form-label" for="text">Message</label>
                                     <textarea rows="10" class="form-control" name="text">{{ $text ?? 'Text message' }}</textarea>
                                 </div>
